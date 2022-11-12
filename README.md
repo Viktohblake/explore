@@ -2,15 +2,26 @@
 
 Explore.
 
-## Getting Started
+A description of the app and its features.
+> Get a list of all countries using a Rest API and display the countries in a List. When tapping on any of the countries in the list, it navigates to the details screen and show the details of the country.
 
-This project is a starting point for a Flutter application.
+A description of the code base and how it works.
+> It simple and minimal, i have a model which contain params needed for filling up data to the field needed to appear on.
+> A service respository that gets make requests from the api with the help of http library, access the json, decode and map it.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+A description of the libraries you used and why you used them.
+> Https - A composable, Future-based library for making HTTP requests. 
+> Carousel slider, helps save time in implement slider function for the images of the detail page
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A description of the challenges you faced and how you solved them.
+> 
+
+A description of the features you would like to add if you had more time.
+> Filter and sorting by language, region, continent.
+
+A link to the APK or IPA file
+> 
+
+A link to the Appetize.io link
+> 
