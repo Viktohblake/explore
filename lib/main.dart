@@ -1,8 +1,12 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:explore/screens/home.dart';
+import 'package:explore/sorting/language_sort.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MultiProvider(providers: [
+  ChangeNotifierProvider<SingleNotifier>(create: (_) => SingleNotifier())
+],
+child: new MyApp()));
 
 final darkNotifier = ValueNotifier<bool>(false);
 

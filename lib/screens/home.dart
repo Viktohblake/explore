@@ -1,8 +1,9 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:explore/main.dart';
 import 'package:explore/service/country_repository.dart';
+import 'package:explore/sorting/language_sort.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';import '../model/country_model.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';import '../model/country_model.dart';
 
 
 import 'details.dart';
@@ -110,7 +111,30 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             onTap: () {
-                              // showModalBottomSheet(context: context, builder: builder)
+                              showModalBottomSheet(context: context, builder: (builder) {
+                                var _singleNotifier = Provider.of<SingleNotifier>(context);
+                                return SingleChildScrollView(
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: languages.map((e) => RadioListTile(
+                                        title: Text(e),
+                                        value: e,
+                                        groupValue: _singleNotifier.currentLanguage,
+                                        selected: _singleNotifier.currentLanguage == e,
+                                        onChanged: (value) {
+                                          if (value != _singleNotifier.currentLanguage) {
+                                            _singleNotifier.updateCountry(value);
+                                            Navigator.of(context).pop();
+                                          }
+                                        },
+                                      ))
+                                          .toList(),
+                                    ),
+                                  ),
+                                );
+                              });
                             },
                           ),
                           InkWell(
