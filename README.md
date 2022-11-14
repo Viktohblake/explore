@@ -11,14 +11,14 @@ A description of the code base and how it works.
 
 A description of the libraries you used and why you used them.
 > Https - A composable, Future-based library for making HTTP requests. 
-> Carousel slider, helps save time in implement slider function for the images of the detail page
+> Carousel slider, helps save time in implement slider function for the images of the detail page.
+> Provider - State management for filtering and sorting.
 
 A description of the challenges you faced and how you solved them.
 > Had issues getting some inner string of the json data, Had to create and instance class to get some strings.
 
 A description of the features you would like to add if you had more time.
-> Filter and sorting by language, region, continent.
-> Fix theme switch not changing background to black.
+> Complete Filter and sorting by language, region, continent.
 
 A link to the APK or IPA file
 > https://drive.google.com/file/d/1UnCW3relo_gvlujth0iWWRPjA6XnHIQ6/view?usp=sharing
