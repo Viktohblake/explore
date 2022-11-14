@@ -1,4 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:explore/main.dart';
 import 'package:explore/service/country_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';import '../model/country_model.dart';
@@ -27,45 +28,45 @@ class _HomeState extends State<Home> {
     getData();
   }
 
+  @override
+  void dispose() {
+    darkNotifier.dispose();
+    super.dispose();
+  }
+
   getData() {
     countryList = CountryRepositoryService().getCountries();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-      initial: AdaptiveThemeMode.system,
-      light: ThemeData(
-          brightness: Brightness.light
-      ),
-      dark: ThemeData(
-          brightness: Brightness.dark
-      ),
-      builder: (ThemeData light, ThemeData dark) {
-        return Scaffold(
-            backgroundColor: Colors.white,
+    bool isDark = darkNotifier.value;
+
+    return Scaffold(
+            backgroundColor: darkNotifier.value ? Color(0xff000F24) : Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor:  darkNotifier.value ? Color(0xff000F24) : Colors.white,
               title: Text(
                 'Explore.',
                 style: TextStyle(
-                    fontSize: 24, fontFamily: 'tectonica', color: Colors.black),
+                    fontSize: 24, fontFamily: 'tectonica', color:  darkNotifier.value ? Colors.white : Colors.black),
               ),
               elevation: 0,
               actions: <Widget>[
                 IconButton(
                   icon: Icon(
                     CupertinoIcons.sun_max,
-                    color: Colors.black,
+                    color:  darkNotifier.value ? Colors.white : Colors.black,
                   ),
                   onPressed: () {
-                    AdaptiveTheme.of(context).toggleThemeMode();
+                    isDark = !isDark;
+                    darkNotifier.value = isDark;
                   },
                 )
               ],
             ),
             body: Scaffold(
-                backgroundColor: Colors.white,
+                backgroundColor: darkNotifier.value ? Color(0xff000F24) : Colors.white,
                 body: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
@@ -100,26 +101,28 @@ class _HomeState extends State<Home> {
                             child: Container(
                               padding: EdgeInsets.all(10.0),
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color:  darkNotifier.value ? Color(0xff000F24) : Colors.white,
                                   boxShadow: [
                                     BoxShadow(color: Colors.grey, spreadRadius: 1.5)
                                   ]),
                               child: Row(
-                                children: [Icon(Icons.language), Text(' EN')],
+                                children: [Icon(Icons.language), Text(' EN', style: TextStyle(color:  darkNotifier.value ? Colors.white : Colors.black),)],
                               ),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              // showModalBottomSheet(context: context, builder: builder)
+                            },
                           ),
                           InkWell(
                             child: Container(
                               padding: EdgeInsets.all(10.0),
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color:  darkNotifier.value ? Color(0xff000F24) : Colors.white,
                                   boxShadow: [
                                     BoxShadow(color: Colors.grey, spreadRadius: 1.5)
                                   ]),
                               child: Row(
-                                children: [Icon(Icons.filter_alt), Text(' Filter')],
+                                children: [Icon(Icons.filter_alt), Text(' Filter', style: TextStyle(color:  darkNotifier.value ? Colors.white : Colors.black),)],
                               ),
                             ),
                             onTap: () {},
@@ -237,8 +240,5 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 )));
-      },
-
-    );
   }
 }

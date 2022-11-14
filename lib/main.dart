@@ -4,29 +4,27 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(new MyApp());
 
+final darkNotifier = ValueNotifier<bool>(false);
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-      light: ThemeData(
-        brightness: Brightness.light,
-      ),
-      dark: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      initial: AdaptiveThemeMode.light,
-      builder: (ThemeData light, ThemeData dark) {
+    return ValueListenableBuilder<bool>(
+      valueListenable: darkNotifier,
+      builder: (BuildContext context, bool isDark, Widget? child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: '/',
           routes: {
             '/': (context) => Home(),
           },
-          theme: light,
-          darkTheme: dark,
-           );
-      },
+          theme: ThemeData(),
+          darkTheme: ThemeData.dark(), // standard dark
+          themeMode: isDark ? ThemeMode.dark : ThemeMode.light, // adaptable device theme
+        );
+      }
 
     );
+
   }
 }

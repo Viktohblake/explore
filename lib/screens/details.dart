@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:explore/service/country_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../model/country_model.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -33,15 +34,15 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: darkNotifier.value ? Color(0xff000F24) : Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor:  darkNotifier.value ? Color(0xff000F24) : Colors.white,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: Icon(
             CupertinoIcons.arrow_left,
-            color: Colors.black,
+            color: darkNotifier.value ? Colors.white : Colors.black,
           ),
         ),
         title: FutureBuilder<List<Country>>(
@@ -60,7 +61,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 style: TextStyle(
                     fontFamily: "Axiforma",
                     fontWeight: FontWeight.w800,
-                    color: Colors.black,
+                    color:  darkNotifier.value ? Colors.white : Colors.black,
                     fontSize: 25),
               );
             } else {
